@@ -1,6 +1,7 @@
 // src/main/java/com/ecommerce/api/controller/ProductController.java
 package com.ecommerce.api.controller;
 
+import com.ecommerce.api.dto.ProductRequest;
 import com.ecommerce.api.entity.Product;
 import com.ecommerce.api.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,18 +28,23 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product create(@RequestBody Product product) {
+    public Product create(@RequestBody ProductRequest request) {
+        Product product = new Product();
+        product.setName(request.getName());
+        product.setDescription(request.getDescription());
+        product.setPrice(request.getPrice());
+        product.setStock(request.getStock());
         return productRepo.save(product);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product product) {
+    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody ProductRequest request) {
         return productRepo.findById(id)
                 .map(p -> {
-                    p.setName(product.getName());
-                    p.setDescription(product.getDescription());
-                    p.setPrice(product.getPrice());
-                    p.setStock(product.getStock());
+                    p.setName(request.getName());
+                    p.setDescription(request.getDescription());
+                    p.setPrice(request.getPrice());
+                    p.setStock(request.getStock());
                     return ResponseEntity.ok(productRepo.save(p));
                 })
                 .orElse(ResponseEntity.notFound().build());
