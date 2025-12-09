@@ -45,4 +45,5 @@ A scalable and modular **Spring Boot–based E-Commerce backend** designed for e
 This project provides core eCommerce functionality including product management and cart operations with a scalable backend setup. It is built with best practices focusing on maintainability, modularity, and performance.
 
 ---
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/429a9e1b-bcf4-4a66-a928-bc37f8a3550e" />
 
